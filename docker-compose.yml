@@ -2,16 +2,26 @@ version: '3'
 services:
   jupyter:
     image: pckzs/jupyter-lean
+    ports:
+    - 8888:8888
+    - 5678:5678
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - /home/jovyan/:/home/jovyan/
+      - $PWD/start.sh:/usr/local/bin/start-notebook.d/start.sh
     environment:
       - NB_USER=jovyan
       - NB_UID=1001
       - NB_GID=1000
+      - NB_GROUP=work
       - CHOWN_HOME=yes
       - JUPYTER_ENABLE_LAB=yes
     restart: unless-stopped
-    ports:
-    - 8888:8888
-    - 5678:5678
+    networks:
+      - proxy
+networks:
+  proxy:
+    driver: bridge
+    
