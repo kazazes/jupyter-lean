@@ -2,8 +2,10 @@
 FROM jupyter/minimal-notebook as base
 USER root
 
-RUN  add-apt-repository ppa:ubuntu-toolchain-r/test && \
-    apt-get update -qq && \
+RUN apt-get update -qq \
+    && apt-get install -y --no-install-recommends software-properties-common \
+    && add-apt-repository ppa:ubuntu-toolchain-r/test \
+    && apt-get update -qq && \
     apt-get install -y --no-install-recommends \
     r-base \
     pandoc \
