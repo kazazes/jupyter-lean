@@ -1,0 +1,17 @@
+version: '3'
+services:
+  jupyter:
+    image: pckzs/jupyter-lean
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NB_USER=jovyan
+      - NB_UID=1001
+      - NB_GID=1000
+      - CHOWN_HOME=yes
+      - JUPYTER_ENABLE_LAB=yes
+    restart: unless-stopped
+    ports:
+    - 8888:8888
+    - 5678:5678
