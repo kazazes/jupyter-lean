@@ -100,6 +100,6 @@ RUN wget http://cdn.quantconnect.com/interactive/ibgateway-stable-standalone-lin
     wget -O ~/Jts/jts.ini http://cdn.quantconnect.com/interactive/ibgateway-latest-standalone-linux-x64-v974.4g.jts.ini && \
     rm ibgateway-stable-standalone-linux-x64-v978.2c.sh
 
-WORKDIR /home/joyvan/lean
+WORKDIR /home/jovyan/
 RUN git clone https://github.com/QuantConnect/Lean.git
 RUN cd Lean/PythonToolbox && python setup.py install
